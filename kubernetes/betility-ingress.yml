@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: betility-ingress
+  annotations:
+    # Make sure to use the name that was used in the gcloud compute addresses create .. command
+    kubernetes.io/ingress.global-static-ip-name: betitlity-user-backend-ip
+spec:
+  backend:
+    serviceName: user-backend-nodeport
+    servicePort: 30000
+  rules:
+  - http:
+      paths:
+      - path: /user
+        backend:
+          serviceName: user-backend-nodeport #this name must match your miro service nodePort "name" tag
+          servicePort: 30000 #this name must match your miro service "port" tag
+      # - path: /bets
+      #   backend:
+      #     serviceName: bets-backend-nodeport
+      #     servicePort: 40000
+
+# example node port for a micro-service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: user-backend-nodeport #matches the serviceName given in the ingress
+# spec:
+#   type: NodePort
+#   selector:
+#     app: user-backend
+#     tier: backend
+#   ports:
+#   - port: 30000
+#     targetPort: 3000

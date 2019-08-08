@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: wecs/circle-ci-gcloud-node:0.1.0
+    working_directory: ~/workspace
+    steps:
+      - checkout
+      - setup_remote_docker      
+      - run:
+          name: Build and Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ] || [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              ./deployment.sh
+            fi  
