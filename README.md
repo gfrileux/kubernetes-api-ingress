@@ -1,6 +1,6 @@
-Betility Backend API - ingress
+Backend API - ingress
 
-This Betility backend is powered by Kubernetes. Each micro serveices is a pod (scalable horizontally) and each has its own Bitbucket repo.
+This  backend is powered by Kubernetes. Each micro services is a pod (scalable horizontally) and each has its own Bitbucket repo.
 
 While this allows us to deploy each service as per changes made to it, it sounds preferable to manage the ingress centrally.
 
